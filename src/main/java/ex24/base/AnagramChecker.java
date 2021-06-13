@@ -39,7 +39,7 @@ public class AnagramChecker {
         return anagram2;
     }
 
-    public boolean checkAnagram(){
+    public boolean isAnagram(){
 
         if (checkLength()){
 

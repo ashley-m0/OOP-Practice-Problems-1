@@ -36,6 +36,7 @@ public class App {
         Scanner input = new Scanner(System.in);
 
         System.out.println("Enter two strings and I'll tell you if they are anagrams:");
+
         System.out.print("Enter the first string: ");
         String word1 = input.nextLine();
         System.out.print("Enter the second string: ");
@@ -46,12 +47,13 @@ public class App {
         String message = generateMessage(anagram);
 
         System.out.print(message);
+
     }
 
     public static String generateMessage(AnagramChecker anagram){
         String message;
 
-        if (anagram.checkAnagram()){
+        if (anagram.isAnagram()){
             message = "\"" + anagram.getAnagram1() + "\" and \"" + anagram.getAnagram2() + "\" are anagrams.";
         } else {
             message = "\"" + anagram.getAnagram1() + "\" and \"" + anagram.getAnagram2() + "\" are not anagrams.";
