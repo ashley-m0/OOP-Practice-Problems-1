@@ -28,6 +28,7 @@ Complete this program without using built-in language features. Use selection or
 develop your own algorithm.
  */
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class App {
@@ -43,17 +44,39 @@ public class App {
         String word2 = input.nextLine();
 
         AnagramChecker anagram = new AnagramChecker(word1, word2);
+        boolean result = isAnagram(anagram.getAnagram1(), anagram.getAnagram2());
 
-        String message = generateMessage(anagram);
+        String message = generateMessage(result, anagram);
 
         System.out.print(message);
 
     }
 
-    public static String generateMessage(AnagramChecker anagram){
+    public static boolean isAnagram(String word1, String word2){
+
+        if (word1.length() == word2.length()){
+
+            //puts strings into a char array
+            char[] sortedAnagram1 = word1.toCharArray();
+            char[] sortedAnagram2 = word2.toCharArray();
+
+            //sorts char arrays
+            Arrays.sort(sortedAnagram1);
+            Arrays.sort(sortedAnagram2);
+
+            //checks if the char arrays are equal
+            Boolean answer = Arrays.equals(sortedAnagram1, sortedAnagram2);
+
+            return answer;
+        } else {
+            return false;
+        }
+    }
+
+    public static String generateMessage(boolean result, AnagramChecker anagram){
         String message;
 
-        if (anagram.isAnagram()){
+        if (result){
             message = "\"" + anagram.getAnagram1() + "\" and \"" + anagram.getAnagram2() + "\" are anagrams.";
         } else {
             message = "\"" + anagram.getAnagram1() + "\" and \"" + anagram.getAnagram2() + "\" are not anagrams.";
