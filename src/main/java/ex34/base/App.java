@@ -1,6 +1,11 @@
 package ex34.base;
 
 /*
+ *  UCF COP3330 Summer 2021 Assignment 2 Solution
+ *  Copyright 2021 Ashley Mojica
+ */
+
+/*
 Exercise 34 - Employee List Removal
 Sometimes you have to locate and remove an entry from a list based on some criteria. You may have
 a deck of cards and need to discard one so it’s no longer in play, or you may need to remove values
@@ -42,6 +47,33 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+        App myApp = new App();
+        String[] employeeList = {"John Smith", "Jackie Jackson", "Chris Jones", "Amanda Cullen", "Jeremy Goodwin"};
 
+        myApp.displayArray(employeeList);
+        System.out.print("\nEnter an employee name to remove: ");
+        String remove = input.nextLine();
+        employeeList = myApp.removeEmployee(employeeList, remove);
+        myApp.displayArray(employeeList);
+    }
+
+    public String[] removeEmployee (String[] employeeList, String removeEmployee){
+        String[] newArray = new String[employeeList.length - 1];
+        int index = 0;
+        for (int i = 0; i < employeeList.length; i++){
+            if (!employeeList[i].equals(removeEmployee)){
+                newArray[index] = employeeList[i];
+                index++;
+            }
+        }
+
+        return newArray;
+    }
+
+    public void displayArray(String[] list){
+        System.out.println("\nThere are "+ list.length + " employees:");
+        for (int i = 0; i < list.length; i++){
+            System.out.println(list[i]);
+        }
     }
 }
