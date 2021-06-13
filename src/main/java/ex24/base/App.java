@@ -1,4 +1,4 @@
-package ex24;
+package ex24.base;
 
 /*
  *  UCF COP3330 Summer 2021 Assignment 2 Solution
@@ -27,10 +27,37 @@ Challenge:
 Complete this program without using built-in language features. Use selection or repetition logic instead and
 develop your own algorithm.
  */
+
+import java.util.Scanner;
+
 public class App {
 
     public static void main(String[] args) {
-        Scanner input =
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter two strings and I'll tell you if they are anagrams:");
+        System.out.print("Enter the first string: ");
+        String word1 = input.nextLine();
+        System.out.print("Enter the second string: ");
+        String word2 = input.nextLine();
+
+        AnagramChecker anagram = new AnagramChecker(word1, word2);
+
+        String message = generateMessage(anagram);
+
+        System.out.print(message);
+    }
+
+    public static String generateMessage(AnagramChecker anagram){
+        String message;
+
+        if (anagram.checkAnagram()){
+            message = "\"" + anagram.getAnagram1() + "\" and \"" + anagram.getAnagram2() + "\" are anagrams.";
+        } else {
+            message = "\"" + anagram.getAnagram1() + "\" and \"" + anagram.getAnagram2() + "\" are not anagrams.";
+        }
+
+        return message;
     }
 
 }
