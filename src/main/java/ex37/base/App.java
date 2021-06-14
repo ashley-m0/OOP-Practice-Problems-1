@@ -38,12 +38,64 @@ public class App {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         Random rand = new Random();
+        GeneratePassword myPassword = new GeneratePassword();
 
         //get user input
         System.out.print("What's the minimum length? ");
         int min = input.nextInt();
         System.out.print("How many special characters? ");
         int numSpecial = input.nextInt();
-        System.out
+        System.out.print("How many numbers? ");
+        int num = input.nextInt();
+
+        char[] password = new char[min+1];
+        int specialCount = 0;
+        int numCount = 0;
+        int letterCount = 0;
+        int randomNum;
+
+        while (specialCount < numSpecial){
+            randomNum = rand.nextInt(min + 1);
+            if (password[randomNum] == 0){
+                password[randomNum] = myPassword.generateRandSpec();
+                specialCount++;
+            }
+        }
+
+       while (numCount < num){
+            randomNum = rand.nextInt(min + 1);
+            if (password[randomNum] == 0){
+                password[randomNum] = myPassword.generateRandNum();
+                numCount++;
+            }
+        }
+
+        for (int i = 0; i < min + 1; i++){
+            if (password[i] == 0){
+                if (letterCount <= (specialCount + numCount)){
+                    password[i] = myPassword.generateRandLet();
+                    letterCount++;
+                } else {
+                    randomNum = rand.nextInt(3);
+                    switch (randomNum){
+                        case 0:
+                            password[i] = myPassword.generateRandLet();
+                            break;
+                        case 1:
+                            password[i] = myPassword.generateRandNum();
+                            break;
+                        case 2:
+                            password[i] = myPassword.generateRandSpec();
+                            break;
+                    }
+                }
+            }
+        }
+
+
+        System.out.print("Your password is ");
+        for(int i = 0; i < password.length; i++){
+            System.out.print(password[i]);
+        }
     }
 }
