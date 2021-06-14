@@ -69,35 +69,38 @@ public class App {
             System.out.print("\nEnter the difficulty level (1, 2, or 3): ");
             int difficulty = input.nextInt();
 
-            if (difficulty == 1){
-                myGame.setNumber(rand.nextInt(10));
-            }else if (difficulty == 2){
-                myGame.setNumber(rand.nextInt(100));
-            }else if (difficulty == 3){
-                myGame.setNumber(rand.nextInt(1000));
+            switch(difficulty){
+                case 1:
+                    myGame.setNumber(rand.nextInt(10));
+                    break;
+                case 2:
+                    myGame.setNumber(rand.nextInt(100));
+                    break;
+                case 3:
+                    myGame.setNumber(rand.nextInt(1000));
+                    break;
             }
 
 
             int count = 0;
-            int correct = 1;
+            boolean winner = false;
+            input.nextLine(); // fix input error
 
             System.out.print("I have my number. What's your guess? ");
-            String guess = input.nextLine();
-            correct = myGame.guessNumber(guess);
 
-            while (correct != 0){
-                correct = myGame.guessNumber(guess);
-                if (correct == 1){
+            while (!winner){
+                String guess = input.nextLine();
+                int correct = myGame.guessNumber(guess);
+                if (correct == 0) {
+                    winner = true;
+                }else if (correct == 1){
                     System.out.print("Too low. Guess again: ");
-                    guess = input.nextLine();
                     count++;
                 } else if (correct == 2){
                     System.out.print("Too high. Guess again: ");
-                    guess = input.nextLine();
                     count++;
-                } else {
+                } else if (correct == 3){
                     System.out.print("Invalid. Guess again: ");
-                    guess = input.nextLine();
                     count++;
                 }
             }

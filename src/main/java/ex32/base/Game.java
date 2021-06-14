@@ -9,31 +9,31 @@ public class Game {
         this.number = num;
     }
 
-    public int guessNumber(String guess){
-        System.out.print(guess);
-        char[] inputArray = guess.toCharArray();
+    public int guessNumber(String guessString){
+        char[] inputArray = guessString.toCharArray();
         int correct = 0;
-        for (int i = 0 ; i < guess.length(); i++){
+        for (int i = 0 ; i < guessString.length(); i++){
             if (Character.isDigit(inputArray[i])){
                 correct++;
             }
         }
-        //case if the user input was invalid
-        if(correct != guess.length()){
-            return 3;
-        }
-
-        int val = Integer.parseInt(guess);
-
-        //case if user guesses the correct number
-        if (val == number){
-            return 0;
-            //case if the guess was too low
-        } else if (val < number){
-            return 1;
-            //case if the guess was too high
+        //indicates the whole string is a number
+        if(correct == guessString.length()){
+            Integer val = Integer.valueOf(guessString);
+            if (val == number){
+                return 0;
+                //case if the guess was too low
+            } else if (val < number){
+                return 1;
+                //case if the guess was too high
+            } else {
+                return 2;
+            }
         } else {
-            return 2;
+            return 3;//case if the user input was invalid
         }
+
+
+
     }
 }
