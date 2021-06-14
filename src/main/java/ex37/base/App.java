@@ -35,10 +35,12 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class App {
+
+    private static Scanner input = new Scanner(System.in);
+    private static Random rand = new Random();
+
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        Random rand = new Random();
-        GeneratePassword myPassword = new GeneratePassword();
+
 
         //get user input
         System.out.print("What's the minimum length? ");
@@ -48,6 +50,15 @@ public class App {
         System.out.print("How many numbers? ");
         int num = input.nextInt();
 
+        char[] password = new char[min+1];
+        password = generatePassword(min, numSpecial, num);
+
+        String message = generateMessage(password);
+        System.out.print(message);
+    }
+
+    public static char[] generatePassword(int min, int numSpecial, int num){
+        GeneratePassword myPassword = new GeneratePassword();
         char[] password = new char[min+1];
         int specialCount = 0;
         int numCount = 0;
@@ -62,7 +73,7 @@ public class App {
             }
         }
 
-       while (numCount < num){
+        while (numCount < num){
             randomNum = rand.nextInt(min + 1);
             if (password[randomNum] == 0){
                 password[randomNum] = myPassword.generateRandNum();
@@ -92,10 +103,14 @@ public class App {
             }
         }
 
+        return password;
+    }
 
-        System.out.print("Your password is ");
-        for(int i = 0; i < password.length; i++){
-            System.out.print(password[i]);
+    public static String generateMessage(char[] pass){
+        String message = "Your password is ";
+        for(int i = 0; i < pass.length; i++){
+            message += (pass[i]);
         }
+        return message;
     }
 }
