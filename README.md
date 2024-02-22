@@ -1,15 +1,13 @@
-#About
+# About:
 
-This is a large compilation of various Java coding practice problems 
-from the Object-Oriented Programming course at UCF (COP 3330).
+This is a large compilation of various Java coding practice problems from the Object-Oriented Programming course at UCF (COP 3330).
 
-Each exercise is organized by exercise number (exXX) in a separate 
-folder in src/main/java. 
+Each exercise is organized by exercise number (exXX) in a separate folder in src/main/java. 
 
 To run each exercise use the App.java file in each folder.
 
 
-#Contents
+# Contents:
 
 Exercise 1 - Saying Hello
 
