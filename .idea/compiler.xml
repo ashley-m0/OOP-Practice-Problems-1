@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="mojica-cop3330-assignment2" />
+        <module name="OOP-Practice-Problems-1" />
       </profile>
     </annotationProcessing>
   </component>
